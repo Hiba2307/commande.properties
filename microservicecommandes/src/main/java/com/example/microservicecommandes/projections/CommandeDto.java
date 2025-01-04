@@ -1,8 +1,9 @@
-package projections;
+package com.example.microservicecommandes.projections;
+
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
-import model.Commande;
+import com.example.microservicecommandes.model.Commande;
 
 @Projection(name = "commandeDTO", types = Commande.class)
 public interface CommandeDto {
