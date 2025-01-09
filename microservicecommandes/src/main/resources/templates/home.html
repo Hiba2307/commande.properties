@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Commandes</title>
 </head>
 <body>
@@ -8,7 +10,6 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Description</th>
                 <th>Quantité</th>
                 <th>Date</th>
@@ -17,7 +18,6 @@
         </thead>
         <tbody>
             <tr th:each="commande : ${commandes}">
-                <td th:text="${commande.id}"></td>
                 <td th:text="${commande.description}"></td>
                 <td th:text="${commande.quantite}"></td>
                 <td th:text="${commande.date}"></td>
