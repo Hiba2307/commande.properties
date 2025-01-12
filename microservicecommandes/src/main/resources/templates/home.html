@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Commandes</title>
 </head>
 <body>
     <h1>Liste des Commandes</h1>
-    <table>
+    <table border="1" id="commandeTable">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Description</th>
                 <th>Quantité</th>
                 <th>Date</th>
@@ -17,13 +16,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="commande : ${commandes}">
-                <td th:text="${commande.description}"></td>
-                <td th:text="${commande.quantite}"></td>
-                <td th:text="${commande.date}"></td>
-                <td th:text="${commande.montant}"></td>
-            </tr>
+            <!-- Les données seront insérées ici -->
         </tbody>
     </table>
+
+    <script>
+        fetch("http://localhost:8888/api/commandes")
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById("commandeTable").getElementsByTagName("tbody")[0];
+                data.forEach(commande => {
+                    const row = tableBody.insertRow();
+                    row.insertCell(0).textContent = commande.id;
+                    row.insertCell(1).textContent = commande.description;
+                    row.insertCell(2).textContent = commande.quantite;
+                    row.insertCell(3).textContent = commande.date;
+                    row.insertCell(4).textContent = commande.montant;
+                });
+            })
+            .catch(error => console.error("Erreur lors de la récupération des commandes :", error));
+    </script>
 </body>
 </html>
